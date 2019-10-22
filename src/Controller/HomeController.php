@@ -26,6 +26,37 @@ class HomeController extends Controller
         return $this->render('home/a_propos.html.twig', [
             'controller_name' => 'HomeController',
         ]);
-    }   
+    }
+    
+    /**
+    * @Route("/articles", name="articles")
+    */
+    public function articles()
+    {
+        return $this->render('home/les_articles.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }  
+
+    /**
+    * @Route("/contact", name="contact")
+    */
+    public function contact()
+    {
+        return $this->render('home/contact.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }  
+
+    /**
+    * @Route("/admin", name="admin")
+    */
+    public function admin()
+    {
+        return $this->render('home/admin.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    } 
+
 }
 
