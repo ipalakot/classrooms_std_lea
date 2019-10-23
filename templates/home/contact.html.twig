@@ -10,6 +10,13 @@
 <div class="jumbotron">
 <div class="example-wrapper">
 <p> Contact </p>
+
+{% if (age>18) %}
+    <h2>la personner est majeur</h2>
+{% else %} 
+    <h2>la personne est mineur</h2>
+{% endif %}
+
 </div>
 </div>
 {% endblock %}
