@@ -36,11 +36,6 @@ class Article
      */
     private $created_At;
 
-    /**
-    * @ORM\Column(type="text")
-    */
-    private $resumer;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -90,18 +85,6 @@ class Article
     public function setCreatedAt(\DateTimeInterface $created_At): self
     {
         $this->created_At = $created_At;
-
-        return $this;
-    }
-
-    public function getResumer(): ?string
-    {
-        return $this->resumer;
-    }
-
-    public function setResumer(string $resumer): self
-    {
-        $this->resumer = $resumer;
 
         return $this;
     }

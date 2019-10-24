@@ -12,19 +12,20 @@ class ArticleFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-
-        for ($i=0; $i>10; $i++)
+        for($i=0; $i<10; $i++)
         {
             $article = new Article();
-            $article->setTitle('Titre de larticle');
-            $article->setContent('contenue de larticle');
-            $article->setImage('image de larticle');
-            $article->setCreated_At ('new \date');
-            $article->setResumer ('resumer de larticle');
-
+            $article->setTitle('article n°')
+                    ->setContent('contenue n°')
+                    ->setImage('image n°')
+                    ->setCreatedAt(new \DateTime());
+            
             $manager->persist($article);
-       
+        
         }
-        $manager->flush();
+     
+    $manager->flush();
+        
     }
+    
 }
