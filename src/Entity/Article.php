@@ -37,7 +37,7 @@ class Article
     private $created_At;
 
     /**
-    * @ORM\Column(type="datetime")
+    * @ORM\Column(type="text")
     */
     private $resumer;
 
