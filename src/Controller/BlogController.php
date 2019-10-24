@@ -24,15 +24,16 @@ class BlogController extends AbstractController
     }
 
     /**
-    * @Route("/blog_show/'$id'", name="blog_show")
+    * @Route("/blog_show/{id}", name="blog_show")
     */
     public function blog_show($id)
     {
         $repo = $this->getDoctrine()->getRepository(Article::class);
-        $articles = $repo->find($id);
+        $article = $repo->find($id);
 
         return $this->render('blog/blog_show.html.twig', [
-            'controller_name' => 'BlogController', 
+            'controller_name' => 'BlogController',
+            'article'=> $article 
         ]);
     }
 }

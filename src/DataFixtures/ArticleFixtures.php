@@ -15,10 +15,10 @@ class ArticleFixtures extends Fixture
         for($i=0; $i<10; $i++)
         {
             $article = new Article();
-            $article->setTitle('article n°')
-                    ->setContent('contenue n°')
-                    ->setImage('image n°')
-                    ->setCreatedAt(new \DateTime());
+            $article ->setTitle('article n°')
+                     ->setContent('contenue n°')
+                     ->setImage('image n°')
+                     ->setCreatedAt(new \DateTime());
             
             $manager->persist($article);
         
