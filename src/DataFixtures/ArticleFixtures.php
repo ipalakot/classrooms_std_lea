@@ -12,7 +12,7 @@ class ArticleFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-        for($i=0; $i<10; $i++)
+        for($i=0; $i<200; $i++)
         {
             $article = new Article();
             $article ->setTitle('article n°')
