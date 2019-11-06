@@ -12,7 +12,8 @@ class ArticleFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-        for($i=0; $i<200; $i++)
+        
+    /* for($i=0; $i<200; $i++)
         {
             $article = new Article();
             $article ->setTitle('article n°')
@@ -24,7 +25,8 @@ class ArticleFixtures extends Fixture
         
         }
      
-    $manager->flush();
+    $manager->flush(); */
+
         
     }
     
