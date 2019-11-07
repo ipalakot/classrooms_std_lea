@@ -7,11 +7,10 @@
 <div class = "jumbotron">
     <article>
             <h2>{{article.title}}</h2>
-            <div class = "metadata">Ecrit le  {{article.createdAt | date('d/m/Y')}} a {{article.createdAt | date('h/i')}}/ {{article.categorie.titre}} </div>
-
+            <div class = "metadata">Ecrit le  {{article.createdAt | date('d/m/Y')}} a {{article.createdAt | date('h:i:s')}} {{article.categorie.titre}} </div>
             <div class = "content">
                 <img src= " {{article.image}} "alt="">
-            {{article.content}}
+                {{article.content}}
             </div>          
     </article>
     
@@ -21,7 +20,7 @@
             <div class='content'>
                 <p>{{commentaire.auteur}}</P>
                 <p>{{commentaire.commentaire}}</p>
-                <p>Ecrit le {{commentaire.createdAt | date('d/m/Y')}} a {{commentaire.createdAt | date('h/i')}}</p>
+                <p>Ecrit le {{commentaire.createdAt | date('d/m/Y')}} a {{commentaire.createdAt | date('h:i:s')}}</p>
             </div>
         {% endfor %}    
     </section>

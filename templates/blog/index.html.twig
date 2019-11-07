@@ -8,21 +8,17 @@
 <div class = "jumbotron">
 
 
-{% for article in articles %}
-    <article>
+    {% for article in articles %}
+        <article>
             <h2>{{article.title}}</h2>
-            <div class = "metadata"> {{article.createdAt | date('d/m/Y')}} a {{article.createdAt | date('h/i')}} / {{article.categorie.titre}} </div>
-
-            <div class = "content">
-                <img src= " {{article.image}} " alt="">
-                {{article.content}}
-                <a href="{{path('blog_show', {'id' : article.id})}}"  "class="btn btn-primary"> Lire la suite </a>      
-            </div>
-                     
-    </article>
-          
-{% endfor %}
-
+                <div class = "metadata"> {{article.createdAt | date('d/m/Y')}} a {{article.createdAt | date('h:i:s')}} / {{article.categorie.titre}} </div>
+                    <div class = "content">
+                    <img src= " {{article.image}} " alt="">
+                    {{article.content}}
+                    <a href="{{path('blog_show', {'id' : article.id})}}" "class="btn btn-primary"> Lire la suite </a>      
+                </div>                     
+        </article>      
+    {% endfor %}
 
 </div>
     
