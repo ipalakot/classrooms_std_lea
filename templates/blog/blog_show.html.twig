@@ -17,10 +17,15 @@
     
 
     <section id="commentaires">
-    
+        {% for commentaire in article.commentaires %}
+            <div class='content'>
+                <p>{{commentaire.auteur}}</P>
+                <p>{{commentaire.commentaire}}</p>
+                <p>Ecrit le {{commentaire.createdAt | date('d/m/Y')}} a {{commentaire.createdAt | date('h/i')}}</p>
+            </div>
+        {% endfor %}    
     </section>
 
-<div class="container">
-
+</div>
 
 {% endblock %}
