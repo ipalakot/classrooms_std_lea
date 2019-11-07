@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+
 use App\Entity\Article;
+use App\Entity\Commentaire;
 
 
 class BlogController extends AbstractController
@@ -20,8 +22,7 @@ class BlogController extends AbstractController
 
         return $this->render('blog/index.html.twig', [
             'controller_name' => 'BlogController',
-            'articles'=> $articles,
-
+            'articles'=> $articles
         ]);
     }
 
@@ -32,10 +33,14 @@ class BlogController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Article::class);
         $article = $repo->find($id);
+   
+        $repo1 = $this->getDoctrine()->getRepository(Commentaire::class);
+        $commentaire = $repo1->find($id);
 
         return $this->render('blog/blog_show.html.twig', [
             'controller_name' => 'BlogController',
             'article'=> $article,
+            'commentaire'=> $commentaire,
         ]);
     }
 }
