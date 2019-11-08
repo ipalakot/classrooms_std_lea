@@ -12,14 +12,23 @@
         <article>
             <h2>{{article.title}}</h2>
                 <div class = "metadata"> {{article.createdAt | date('d/m/Y')}} a {{article.createdAt | date('h:i:s')}} / {{article.categorie.titre}} </div>
-                    <div class = "content">
-                    <img src= " {{article.image}} " alt="">
-                    {{article.content}}
-                    <a href="{{path('blog_show', {'id' : article.id})}}" "class="btn btn-primary"> Lire la suite </a>      
-                </div>                     
+                </br>
+                <div class = "content">
+                <img src= " {{article.image}} " alt="">
+                </div>    
+                </br>
+                <div class="content">
+                {{article.content}}
+                </div>
+                </br>  
+                <a href="{{path('blog_show', {'id' : article.id})}}" class="btn btn-primary"> Lire la suite </a>                                          
+                <hr>
         </article>      
     {% endfor %}
 
+    <div class="navigation">
+        {{ knp_pagination_render(articles) }}
+    </div>
 </div>
     
 {% endblock %}
