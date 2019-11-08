@@ -17,7 +17,7 @@ class ArticleFixtures extends Fixture
 
         $faker = \Faker\Factory::create();
         
-        for($i=0; $i<3; $i++)
+        for($i=0; $i<5; $i++)
         {   
             $categorie = new Categorie();
             $categorie ->setTitre ($faker->sentence())
@@ -36,7 +36,7 @@ class ArticleFixtures extends Fixture
             
             $manager->persist($article);
         
-                for($k=0; $k<5; $k++)
+                for($k=0; $k<10; $k++)
                 {
                     $commentaire = new commentaire();
                     $commentaire ->setAuteur($faker->userName())
