@@ -4,31 +4,41 @@
 
 {% block body %}
 
+    <div class="container m-4">
 
-<div class = "jumbotron">
+        <div class="row">     
 
+            {% for article in articles  %}
 
-    {% for article in articles %}
-        <article>
-            <h2>{{article.title}}</h2>
-                <div class = "metadata"> {{article.createdAt | date('d/m/Y')}} a {{article.createdAt | date('h:i:s')}} / {{article.categorie.titre}} </div>
-                </br>
-                <div class = "content">
-                <img src= " {{article.image}} " alt="">
-                </div>    
-                </br>
-                <div class="content">
-                {{article.content}}
+                <div class="col-md-4">
+
+                    <article>
+                        <h2>{{article.title}}</h2>
+                        <div class = "metadata"> {{article.createdAt | date('d/m/Y')}} a {{article.createdAt | date('h:i:s')}} / {{article.categorie.titre}} </div>
+                        </br>
+                        <div class = "content">
+                        <img src= " {{article.image}} " alt="" width="300">
+                        </div>    
+                        </br>
+                        <div class="content">
+                        {{article.content}}
+                        </div>
+                        </br>  
+                        <a href="{{path('blog_show', {'id' : article.id})}}" class="btn btn-primary"> Lire la suite </a>                                          
+                        <hr>
+                    </article>
+                
                 </div>
-                </br>  
-                <a href="{{path('blog_show', {'id' : article.id})}}" class="btn btn-primary"> Lire la suite </a>                                          
-                <hr>
-        </article>      
-    {% endfor %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>  
 
     <div class="navigation">
         {{ knp_pagination_render(articles) }}
     </div>
-</div>
+
     
 {% endblock %}
