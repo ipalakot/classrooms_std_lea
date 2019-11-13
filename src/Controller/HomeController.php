@@ -57,7 +57,7 @@ class HomeController extends Controller
         return $this->render('home/contact.html.twig', [
             'controller_name' => 'HomeController',
             'age' => '21',
-         ]);
+        ]);
     }  
 
     /**
