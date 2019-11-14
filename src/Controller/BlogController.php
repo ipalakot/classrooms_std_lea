@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+
 use App\Entity\Article;
 
-use Knp\Component\Pager\PaginatorInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 
+use Knp\Component\Pager\PaginatorInterface;
 
 class BlogController extends AbstractController
 {
@@ -31,6 +33,40 @@ class BlogController extends AbstractController
         ]);
     }
 
+
+    /**
+    * @Route("/newArticle", name="nouvelleArticle")
+    */
+    public function newArticle(Request $request, ObjectManager $manager)
+    {
+        $article = new Article();
+        $form = $this->createFormBuilder($article)
+
+                ->add('title')
+                ->add('content')
+                ->add('image', null)
+
+                ->getForm();
+
+                $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid())
+        {
+
+            $article->setCreatedAt(new \DateTime());
+            $manager->persist($article); 
+            $manager->flush();
+
+        }
+
+        return $this->render('blog/newArticle.html.twig', [ 
+            'formCreatArticle' => $form->createView(),
+            ]);
+    }
+
+
+
+
     /**
     * @Route("/blog_show/{id}", name="blog_show")
     */
@@ -44,4 +80,5 @@ class BlogController extends AbstractController
             'article'=> $article,
         ]);
     }
+
 }

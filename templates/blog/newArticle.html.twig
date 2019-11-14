@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %} 
+
+{% form_theme  formCreatArticle'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+<div class = "jumbotron">
+{{ form_start(formCreatArticle) }}
+    {{ form_widget(formCreatArticle) }}
+
+<button type"submit" class="btn btn-success"> J'enregistre </button>
+
+{{ form_end(formCreatArticle) }}
+</div>
+
+{% endblock %}
