@@ -99,14 +99,14 @@ class Utilisateur
         return $this;
     }
 
-    public function getDateLocation(): ?int
+    public function getDatelocation(): ?int
     {
-        return $this->DateLocation;
+        return $this->Datelocation;
     }
 
-    public function setDateLocation(int $DateLocation): self
+    public function setDateLocation(int $Datelocation): self
     {
-        $this->Date = $DateLocation;
+        $this->Date = $Datelocation;
 
         return $this;
     }

@@ -29,7 +29,7 @@ class Categorie
     private $Resumer;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="categorie", )
      */
     private $Article;
 

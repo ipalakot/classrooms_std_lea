@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Article;
+use App\Entity\Utilisateur;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,7 @@ class BlogController extends AbstractController
     /**
     * @Route("/newArticle", name="nouvelleArticle")
     */
-    public function newArticle(Request $request, ObjectManager $manager)
+    public function newArticle(Article $article = null, Request $request, ObjectManager $manager)
     {
         $article = new Article();
         $form = $this->createFormBuilder($article)
@@ -45,6 +46,7 @@ class BlogController extends AbstractController
                 ->add('title')
                 ->add('content')
                 ->add('image', null)
+               // ->add('categorie', null, ['label'=>'test'])
 
                 ->getForm();
 
@@ -52,11 +54,9 @@ class BlogController extends AbstractController
         
         if($form->isSubmitted() && $form->isValid())
         {
-
             $article->setCreatedAt(new \DateTime());
             $manager->persist($article); 
             $manager->flush();
-
         }
 
         return $this->render('blog/newArticle.html.twig', [ 
@@ -64,6 +64,38 @@ class BlogController extends AbstractController
             ]);
     }
 
+
+    /**
+    * @Route("/newUtilisateur", name="nouvelleUtilisateur")
+    */
+    public function newUtilisateur(Request $request, ObjectManager $manager)
+    {
+        $utilisateur = new Utilisateur();
+        $form = $this->createFormBuilder($utilisateur)
+
+                ->add('Nom')
+                ->add('Prenom')
+                ->add('dateDeNaissance')
+                ->add('mail')
+                ->add('Datelocation')
+                ->add('Duree')
+
+                ->getForm();
+
+                $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid())
+        {
+         
+            $manager->persist($utilisateur); 
+            $manager->flush();
+
+        }
+
+        return $this->render('blog/newUtilisateur.html.twig', [ 
+            'formCreatUtilisateur' => $form->createView(),
+            ]);
+    }
 
 
 
