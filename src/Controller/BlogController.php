@@ -46,7 +46,6 @@ class BlogController extends AbstractController
                 ->add('title')
                 ->add('content')
                 ->add('image', null)
-               // ->add('categorie', null, ['label'=>'test'])
 
                 ->getForm();
 
