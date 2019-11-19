@@ -7,6 +7,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Article;
 use App\Entity\Utilisateur;
+use App\Entity\Categorie;
+
+use App\Form\ArticleType;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,17 +41,17 @@ class BlogController extends AbstractController
     /**
     * @Route("/newArticle", name="nouvelleArticle")
     */
-    public function newArticle(Article $article = null, Request $request, ObjectManager $manager)
+    public function newArticle(Request $request, ObjectManager $manager)
     {
         $article = new Article();
-        $form = $this->createFormBuilder($article)
+        $form = $this->createForm(ArticleType::class, $article);
 
+/*        $form = $this->createFormBuilder($article)
                 ->add('title')
                 ->add('content')
                 ->add('image', null)
-
                 ->getForm();
-
+*/
                 $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid())
@@ -74,9 +77,9 @@ class BlogController extends AbstractController
 
                 ->add('Nom')
                 ->add('Prenom')
-                ->add('dateDeNaissance')
+           //     ->add('dateDeNaissance')
                 ->add('mail')
-                ->add('Datelocation')
+           //     ->add('Datelocation')
                 ->add('Duree')
 
                 ->getForm();
@@ -88,7 +91,8 @@ class BlogController extends AbstractController
          
             $manager->persist($utilisateur); 
             $manager->flush();
-
+         
+            return $this->redirectToRoute('utilisateur');
         }
 
         return $this->render('blog/newUtilisateur.html.twig', [ 

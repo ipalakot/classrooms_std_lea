@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Utisateurs!{% endblock %}
+
+{% block body %}
+
+    <div class="container m-4">
+
+        <div class="row">     
+
+            {% for utilisateur in utilisateurs  %}
+
+                <div class="col-md-4">
+
+                    <utilisateur>
+                        <div class = "content">
+                            {{utilisateur.nom}}
+                        </div>    
+                        </br>
+                        <div class = "content">
+                            {{utilisateur.prenom}}
+                        </div>    
+                        </br>  
+                        <div class = "content">
+                            {{utilisateur.mail}}
+                        </div>                                             
+                        <hr>
+                    </utilisateur>
+                
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>  
+
+    <div class="navigation">
+        {{ knp_pagination_render(articles) }}
+    </div>
+
+    
+{% endblock %}
