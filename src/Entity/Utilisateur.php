@@ -20,11 +20,13 @@ class Utilisateur
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=5, max=500, minMessage="Your first name must be at least characters long")
      */
     private $Nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=5, max=500, minMessage="Your first name must be at least characters long")
      */
     private $Prenom;
 

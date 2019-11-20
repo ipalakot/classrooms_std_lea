@@ -1,27 +1,25 @@
 {% extends 'base.admin.html.twig' %}
 
-{% block title %}Liste Des Articles!{% endblock %}
+{% block title %}Liste Des Catégories!{% endblock %}
 
 {% block body %}
-    <p><a class="btn btn-warning" href="#">Nouvelle Article</a></p>
+    <p><a class="btn btn-warning" href="#">Nouvelle Categorie</a></p>
 
     <table class="table table-striped table-bordered table-hover">
 
         <tr>
             <th>id</th>
             <th>Titre</th>
-            <th>Categorie</th>
-            <th>Contenue</th>
+            <th>Resumer</th>
             <th>modifier</th>
             <th>supprimer</th>
         </tr>
 
-        {% for article in articles  %}
+        {% for categorie in categories %}
             <tr>
-                <td>{{article.id}}</td>
-                <td>{{article.title}}</td>
-                <td>{{article.categorie.titre}}</td>
-                <td>{{article.content}}</td>
+                <td>{{categorie.id}}</td>
+                <td>{{categorie.titre}}</td>
+                <td>{{categorie.resumer}}</td>
                 <td><a href="#" class="btn btn-primary">Editer</a></td>
                 <td><a href="#" class="btn btn-primary">Suprimer</a></td>                                             
             </tr>
