@@ -42,14 +42,19 @@ class Utilisateur
     private $mail;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $Datelocation;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $Duree;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
 
     public function getId(): ?int
     {
@@ -109,7 +114,7 @@ class Utilisateur
         return $this->Datelocation;
     }
 
-    public function setDateLocation(int $Datelocation): self
+    public function setDatelocation(int $Datelocation): self
     {
         $this->Date = $Datelocation;
 
@@ -124,6 +129,18 @@ class Utilisateur
     public function setDuree(int $Duree): self
     {
         $this->Duree = $Duree;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }

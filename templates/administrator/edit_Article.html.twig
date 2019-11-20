@@ -3,7 +3,7 @@
 {% block title %}Liste Des Articles!{% endblock %}
 
 {% block body %}
-    <p><a class="btn btn-warning" href="#">Nouvelle Article</a></p>
+    <p><a class="btn btn-warning" href"{{path('article.creation')}}">Nouvelle Article</a></p>
 
     <table class="table table-striped table-bordered table-hover">
 
@@ -22,7 +22,7 @@
                 <td>{{article.title}}</td>
                 <td>{{article.categorie.titre}}</td>
                 <td>{{article.content}}</td>
-                <td><a href="#" class="btn btn-primary">Editer</a></td>
+                <td><a href="{{path('article.edition',{'id': article.id })}}" class="btn btn-primary">Editer</a></td>
                 <td><a href="#" class="btn btn-primary">Suprimer</a></td>                                             
             </tr>
         {% endfor %}    

@@ -10,11 +10,14 @@ use App\Entity\Utilisateur;
 use App\Entity\Categorie;
 
 use App\Form\ArticleType;
+use App\Form\UtilisateurType;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+
 
 class BlogController extends AbstractController
 {
@@ -39,7 +42,7 @@ class BlogController extends AbstractController
 
 
     /**
-    * @Route("/newArticle", name="nouvelleArticle")
+    * @Route("/article/nouveau", name="article.creation")
     */
     public function newArticle(Request $request, ObjectManager $manager)
     {
@@ -61,28 +64,53 @@ class BlogController extends AbstractController
             $manager->flush();
         }
 
-        return $this->render('blog/newArticle.html.twig', [ 
+        return $this->render('blog/form_article.html.twig', [ 
             'formCreatArticle' => $form->createView(),
             ]);
     }
 
+    /**
+    * @Route("/article/{id}/edition", name="article.edition")
+    */
+    public function modificationArticle(Article $article, Request $request, ObjectManager $manager)
+        {
+            $form = $this->createFormBuilder($article)
+                    ->add('title')
+                    ->add('content')
+                    ->add('image')
+
+                    ->getForm();
+    
+            $form->handleRequest($request);
+        
+            if($form->isSubmitted() && $form->isValid())
+            {
+                $manager->persist($article); 
+                $manager->flush();
+                return $this->redirectToRoute('blog_show', ['id'=>$article->getId()]);
+            }
+
+            return $this->render('blog/form_article.html.twig', [ 
+                'formCreatArticle' => $form->createView(),
+                ]);
+        }
 
     /**
-    * @Route("/newUtilisateur", name="nouvelleUtilisateur")
+    * @Route("/Utilisateur/nouveau", name="utilisateur.nouveau")
     */
     public function newUtilisateur(Request $request, ObjectManager $manager)
     {
         $utilisateur = new Utilisateur();
-        $form = $this->createFormBuilder($utilisateur)
+        $form = $this->createForm(UtilisateurType::class, $utilisateur);
 
-                ->add('Nom')
-                ->add('Prenom')
-           //     ->add('dateDeNaissance')
-                ->add('mail')
-           //     ->add('Datelocation')
-                ->add('Duree')
-
-                ->getForm();
+        //$form = $this->createFormBuilder($utilisateur)
+            // ->add('Nom')
+            // ->add('Prenom')
+            // ->add('dateDeNaissance')
+            // ->add('mail')
+            // ->add('Datelocation')
+            // ->add('Duree')
+            // ->getForm();
 
                 $form->handleRequest($request);
         
@@ -92,7 +120,7 @@ class BlogController extends AbstractController
             $manager->persist($utilisateur); 
             $manager->flush();
          
-            return $this->redirectToRoute('utilisateur');
+         //   return $this->render('blog/utilisateur.html.twig');
         }
 
         return $this->render('blog/newUtilisateur.html.twig', [ 
@@ -100,7 +128,35 @@ class BlogController extends AbstractController
             ]);
     }
 
+    /**
+    * @Route("/utilisateur/{id}/edition", name="utilisateur.edition")
+    */
+    public function modificationUtilisateur(Utilisateur $utilisateur, Request $request, ObjectManager $manager)
+        {
+            $form = $this->createFormBuilder($utilisateur)
+                    ->add('nom')
+                    ->add('prenom')
+                    ->add('datedenaissance')
+                    ->add('mail')
+                    ->add('datelocation')
+                    ->add('duree')
+                    ->add('password',  PasswordType::class)
 
+                    ->getForm();
+    
+            $form->handleRequest($request);
+        
+            if($form->isSubmitted() && $form->isValid())
+            {
+                $manager->persist($utilisateur); 
+                $manager->flush();
+                return $this->redirectToRoute('', ['id'=>$utilisateur->getId()]);
+            }
+
+            return $this->render('blog/form_utilisateur.html.twig', [ 
+                'formCreatUtilisateur' => $form->createView(),
+                ]);
+        }
 
     /**
     * @Route("/blog_show/{id}", name="blog_show")
@@ -115,5 +171,6 @@ class BlogController extends AbstractController
             'article'=> $article,
         ]);
     }
+
 
 }
