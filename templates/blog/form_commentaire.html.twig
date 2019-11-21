@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %} 
+
+{% form_theme  formCreatCommentaire'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+<div class = "jumbotron">
+{{ form_start(formCreatCommentaire) }}
+    {{ form_widget(formCreatCommentaire) }}
+
+<button type"submit" class="btn btn-success"> J'enregistre </button>
+
+{{ form_end(formCreatCommentaire) }}
+</div>
+
+{% endblock %}

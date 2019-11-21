@@ -3,7 +3,11 @@
 {% block title %}Liste Des Catégories!{% endblock %}
 
 {% block body %}
-    <p><a class="btn btn-warning" href="#">Nouvelle Categorie</a></p>
+    <p>
+    <br> </br>
+    <a class="btn btn-warning" href="{{path('categorie.creation')}}">Nouvelle Categorie</a>
+    <br> </br>
+    </p>
 
     <table class="table table-striped table-bordered table-hover">
 
@@ -20,7 +24,7 @@
                 <td>{{categorie.id}}</td>
                 <td>{{categorie.titre}}</td>
                 <td>{{categorie.resumer}}</td>
-                <td><a href="#" class="btn btn-primary">Editer</a></td>
+                <td><a href="{{path('categorie.edition', {'id': categorie.id })}}" class="btn btn-primary">Editer</a></td>
                 <td><a href="#" class="btn btn-primary">Suprimer</a></td>                                             
             </tr>
         {% endfor %}    

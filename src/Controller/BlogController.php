@@ -8,9 +8,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
 use App\Entity\Utilisateur;
 use App\Entity\Categorie;
+use App\Entity\Commentaire;
 
 use App\Form\ArticleType;
 use App\Form\UtilisateurType;
+use App\Form\CategorieType;
+use App\Form\CommentaireType;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,12 +52,12 @@ class BlogController extends AbstractController
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
 
-/*        $form = $this->createFormBuilder($article)
+            /* $form = $this->createFormBuilder($article)
                 ->add('title')
                 ->add('content')
                 ->add('image', null)
                 ->getForm();
-*/
+            */
                 $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid())
@@ -73,57 +76,53 @@ class BlogController extends AbstractController
     * @Route("/article/{id}/edition", name="article.edition")
     */
     public function modificationArticle(Article $article, Request $request, ObjectManager $manager)
-        {
-            $form = $this->createFormBuilder($article)
-                    ->add('title')
-                    ->add('content')
-                    ->add('image')
-
-                    ->getForm();
+    {
+        $form = $this->createFormBuilder($article)
+            ->add('title')
+            ->add('content')
+            ->add('image')
+            ->getForm();
     
             $form->handleRequest($request);
         
-            if($form->isSubmitted() && $form->isValid())
-            {
-                $manager->persist($article); 
-                $manager->flush();
-                return $this->redirectToRoute('blog_show', ['id'=>$article->getId()]);
-            }
-
-            return $this->render('blog/form_article.html.twig', [ 
-                'formCreatArticle' => $form->createView(),
-                ]);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($article); 
+            $manager->flush();
+            return $this->redirectToRoute('blog_show', ['id'=>$article->getId()]);
         }
 
+        return $this->render('blog/form_article.html.twig', [ 
+            'formCreatArticle' => $form->createView(),
+            ]);
+    }
+
     /**
-    * @Route("/Utilisateur/nouveau", name="utilisateur.nouveau")
+    * @Route("/utilisateur/nouveau", name="utilisateur.creation")
     */
     public function newUtilisateur(Request $request, ObjectManager $manager)
     {
         $utilisateur = new Utilisateur();
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
 
-        //$form = $this->createFormBuilder($utilisateur)
-            // ->add('Nom')
-            // ->add('Prenom')
-            // ->add('dateDeNaissance')
-            // ->add('mail')
-            // ->add('Datelocation')
-            // ->add('Duree')
-            // ->getForm();
-
-                $form->handleRequest($request);
+        /* $form = $this->createFormBuilder($utilisateur)
+            ->add('Nom')
+            ->add('Prenom')
+            ->add('dateDeNaissance')
+            ->add('mail')
+            ->add('Datelocation')
+            ->add('Duree')
+            ->getForm();
+        */
+            $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid())
         {
-         
             $manager->persist($utilisateur); 
             $manager->flush();
-         
-         //   return $this->render('blog/utilisateur.html.twig');
         }
 
-        return $this->render('blog/newUtilisateur.html.twig', [ 
+        return $this->render('blog/form_utilisateur.html.twig', [ 
             'formCreatUtilisateur' => $form->createView(),
             ]);
     }
@@ -132,31 +131,132 @@ class BlogController extends AbstractController
     * @Route("/utilisateur/{id}/edition", name="utilisateur.edition")
     */
     public function modificationUtilisateur(Utilisateur $utilisateur, Request $request, ObjectManager $manager)
-        {
-            $form = $this->createFormBuilder($utilisateur)
-                    ->add('nom')
-                    ->add('prenom')
-                    ->add('datedenaissance')
-                    ->add('mail')
-                    ->add('datelocation')
-                    ->add('duree')
-                    ->add('password',  PasswordType::class)
-
-                    ->getForm();
+    {
+        $form = $this->createFormBuilder($utilisateur)
+            ->add('nom')
+            ->add('prenom')
+            ->add('datedenaissance')
+            ->add('mail')
+            ->add('datelocation')
+            ->add('duree')
+            ->add('password',  PasswordType::class)
+            ->getForm();
     
             $form->handleRequest($request);
         
-            if($form->isSubmitted() && $form->isValid())
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($utilisateur); 
+            $manager->flush();
+            //return $this->redirectToRoute('', ['id'=>$utilisateur->getId()]);
+        }
+
+        return $this->render('blog/form_utilisateur.html.twig', [ 
+            'formCreatUtilisateur' => $form->createView(),
+            ]);
+    }
+
+    /**
+    * @Route("/categorie/nouveau", name="categorie.creation")
+    */
+    public function newCategorie(Request $request, ObjectManager $manager)
+    {
+        $categorie = new Categorie();
+        $form = $this->createForm(CategorieType::class, $categorie);
+
+        /* $form = $this->createFormBuilder($article)
+            ->add('titre')
+            ->add('resumer')
+            ->getForm();
+        */
+
+            $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($categorie); 
+            $manager->flush();
+        }
+
+        return $this->render('blog/form_categorie.html.twig', [ 
+            'formCreatCategorie' => $form->createView(),
+            ]);
+    }
+
+    /**
+    * @Route("/categorie/{id}/edition", name="categorie.edition")
+    */
+    public function modificationCategorie(Categorie $categorie, Request $request, ObjectManager $manager)
+    {
+        $form = $this->createFormBuilder($categorie)
+            ->add('titre')
+            ->add('resumer')
+            ->getForm();
+    
+            $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($categorie); 
+            $manager->flush();
+            //return $this->redirectToRoute('', ['id'=>$utilisateur->getId()]);
+        }
+
+        return $this->render('blog/form_categorie.html.twig', [ 
+            'formCreatCategorie' => $form->createView(),
+            ]);
+    }
+
+    /**
+    * @Route("/commentaire/nouveau", name="commentaire.creation")
+    */
+    public function newCommentaire(Request $request, ObjectManager $manager)
+    {
+        $commentaire = new Commentaire();
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+
+            /* $form = $this->createFormBuilder($article)
+                ->add('auteur')
+                ->add('commentaire')
+                ->getForm();
+            */
+                $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $commentaire->setCreatedAt(new \DateTime());
+            $manager->persist($commentaire); 
+            $manager->flush();
+        }
+
+        return $this->render('blog/form_commentaire.html.twig', [ 
+            'formCreatCommentaire' => $form->createView(),
+            ]);
+        }
+
+    /**
+    * @Route("/commentaire/{id}/edition", name="commentaire.edition")
+    */
+    public function modificationCommentaire(Commentaire $commentaire, Request $request, ObjectManager $manager)
+    {
+        $form = $this->createFormBuilder($commentaire)
+            ->add('auteur')
+            ->add('commentaire')
+            ->getForm();
+        
+            $form->handleRequest($request);
+            
+        if($form->isSubmitted() && $form->isValid())
             {
-                $manager->persist($utilisateur); 
+                $manager->persist($commentaire); 
                 $manager->flush();
-                return $this->redirectToRoute('', ['id'=>$utilisateur->getId()]);
+                //return $this->redirectToRoute('', ['id'=>$utilisateur->getId()]);
             }
 
-            return $this->render('blog/form_utilisateur.html.twig', [ 
-                'formCreatUtilisateur' => $form->createView(),
+            return $this->render('blog/form_commentaire.html.twig', [ 
+                'formCreatCommentaire' => $form->createView(),
                 ]);
-        }
+    }
 
     /**
     * @Route("/blog_show/{id}", name="blog_show")

@@ -5,7 +5,11 @@
 {% block body %}
     <table class="table table-striped table-bordered table-hover">
         
-        <p><a class="btn btn-warning" href="#">Nouvelle Utilisateur</a></p>
+        <p>
+        <br> </br>
+        <a class="btn btn-warning" href="{{path('utilisateur.creation')}}">Nouvelle Utilisateur</a>
+        <br> </br>
+        </p>
         
         <tr>
             <th>id</th>
@@ -24,7 +28,7 @@
                 <td>{{utilisateur.prenom}}</td>
                 <td>{{utilisateur.datedenaissance}}</td>
                 <td>{{utilisateur.mail}}</td>
-                <td><a href="#" class="btn btn-primary">Editer</a></td>
+                <td><a href="{{path('utilisateur.edition', {'id': utilisateur.id })}}" class="btn btn-primary">Editer</a></td>
                 <td><a href="#" class="btn btn-primary">Suprimer</a></td>                                             
             </tr>
         {% endfor %}    
