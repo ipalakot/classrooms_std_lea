@@ -16,6 +16,7 @@ use App\Form\CategorieType;
 use App\Form\CommentaireType;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use PhpParser\Builder\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
@@ -81,7 +82,6 @@ class AdministratorController extends AbstractController
     */
     public function listeCategorie()
     {
-
         $repo = $this->getDoctrine()->getRepository(Categorie::class);
         $categories = $repo->findAll();
     
@@ -122,7 +122,7 @@ class AdministratorController extends AbstractController
     }
 
     /**
-    * @Route("/admin/article/{id}/edition", name="article.edition")
+    * @Route("/admin/article/{id}", name="article.edition")
     */
     public function modificationArticle(Article $article, Request $request, ObjectManager $manager)
     {
@@ -144,6 +144,17 @@ class AdministratorController extends AbstractController
         return $this->render('blog/form_article.html.twig', [ 
             'formCreatArticle' => $form->createView(),
             ]);
+    }
+    
+    /**
+    * @Route("/admin/article/{id}/", name="article.supression"): Response
+    */
+    public function deleteArticle(Article $article, Request $request, ObjectManager $manager)
+    {
+            $manager->remove($article); 
+            $manager->flush();
+
+        return $this->redirectToRoute('listeArticle');
     }
 
     /**
@@ -206,6 +217,17 @@ class AdministratorController extends AbstractController
     }
 
     /**
+    * @Route("/admin/utilisateur/{id}/", name="utilisateur.supression"): Response
+    */
+    public function deleteUtilisateur(Utilisateur $utilisateur, Request $request, ObjectManager $manager)
+    {
+            $manager->remove($utilisateur); 
+            $manager->flush();
+
+        return $this->redirectToRoute('listeUtilisateur');
+    }
+
+    /**
     * @Route("/admin/categorie/nouveau", name="categorie.creation")
     */
     public function newCategorie(Request $request, ObjectManager $manager)
@@ -254,6 +276,17 @@ class AdministratorController extends AbstractController
         return $this->render('blog/form_categorie.html.twig', [ 
             'formCreatCategorie' => $form->createView(),
             ]);
+    }
+
+    /**
+    * @Route("/admin/categorie/{id}/", name="categorie.supression"): Response
+    */
+    public function deleteCategorie(Categorie $categorie, Request $request, ObjectManager $manager)
+    {
+            $manager->remove($categorie); 
+            $manager->flush();
+
+        return $this->redirectToRoute('listeCategorie');
     }
 
     /**
@@ -306,4 +339,16 @@ class AdministratorController extends AbstractController
                 'formCreatCommentaire' => $form->createView(),
                 ]);
     }
+
+    /**
+    * @Route("/admin/commentaire/{id}/", name="commentaire.supression"): Response
+    */
+    public function deleteCommentarie(Commentaire $commentaire, Request $request, ObjectManager $manager)
+    {
+            $manager->remove($commentaire); 
+            $manager->flush();
+
+        return $this->redirectToRoute('listeCommentaire');
+    }
+
 }

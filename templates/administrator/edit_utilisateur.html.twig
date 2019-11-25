@@ -29,7 +29,12 @@
                 <td>{{utilisateur.datedenaissance}}</td>
                 <td>{{utilisateur.mail}}</td>
                 <td><a href="{{path('utilisateur.edition', {'id': utilisateur.id })}}" class="btn btn-primary">Editer</a></td>
-                <td><a href="#" class="btn btn-primary">Suprimer</a></td>                                             
+                <td>
+                    <form method="post" action="{{path('utilisateur.supression', {'id': utilisateur.id })}}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-primary"> Supprimer </button>
+                    </form>
+                </td>                                             
             </tr>
         {% endfor %}    
     

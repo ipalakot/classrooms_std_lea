@@ -25,7 +25,12 @@
                 <td>{{categorie.titre}}</td>
                 <td>{{categorie.resumer}}</td>
                 <td><a href="{{path('categorie.edition', {'id': categorie.id })}}" class="btn btn-primary">Editer</a></td>
-                <td><a href="#" class="btn btn-primary">Suprimer</a></td>                                             
+                <td>
+                    <form method="post" action="{{path('categorie.supression', {'id': categorie.id })}}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-primary"> Supprimer </button>
+                    </form>
+                </td>                                               
             </tr>
         {% endfor %}    
     

@@ -26,7 +26,12 @@
                 <td>{{commentaire.auteur}}</td>
                 <td>{{commentaire.commentaire}}</td>
                 <td><a href="{{path('commentaire.edition', {'id': commentaire.id })}}" class="btn btn-primary">Editer</a></td>
-                <td><a href="#" class="btn btn-primary">Suprimer</a></td>                                       
+                <td>
+                    <form method="post" action="{{path('commentaire.supression', {'id': commentaire.id })}}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-primary"> Supprimer </button>
+                    </form>
+                </td>                                       
             </tr>
         {% endfor %}    
     
