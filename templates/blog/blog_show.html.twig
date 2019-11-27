@@ -5,20 +5,19 @@
 {% block body %}
 
 <div class = "jumbotron">
-    <article>
-            <h2>{{article.title}}</h2>
-            <div class = "metadata">Ecrit le  {{article.createdAt | date('d/m/Y')}} a {{article.createdAt | date('h:i:s')}} {{article.categorie.titre}} </div>
-            </br>
-            <div class = "content">
-                <img src= " {{article.image}} "alt="">    
-            </div>
-            </br>
-            <div class="content">
-            {{article.content}}
-            </div>          
-    </article>
+
+
     
     </br>
+    <h2> ecrivez un commentaire </h2>
+
+    {{ form_start(formCommentaire) }}
+            {{ form_widget(formCommentaire) }}
+                <button type"submit" class="btn btn-success"> J'enregistre </button>
+        {{ form_end(formCommentaire) }}
+    </br>
+
+
 
     <section id="commentaires">
         <div class='container'>
@@ -35,6 +34,7 @@
             </div>
         </div>
         </br>
+        
         {% for commentaire in article.commentaires %}
             <div class='container'>
                 <div class='content'>

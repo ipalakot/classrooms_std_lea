@@ -2,7 +2,8 @@
 
 namespace App\Entity;
 
-use App\Entity\Article;
+//use App\Entity\Article;
+use App\Entity\Commentaire;
 use App\Entity\Categorie;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -157,5 +158,10 @@ class Article
         }
 
         return $this;
+    }
+
+    public function _toString()
+    {
+        return $this->getTitle();
     }
 }
