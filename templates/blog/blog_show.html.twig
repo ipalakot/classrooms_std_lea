@@ -6,18 +6,30 @@
 
 <div class = "jumbotron">
 
+    <article>
+        <h2>{{article.title}}</h2>
+        <div class = "metadata"> {{article.createdAt | date('d/m/Y')}} a {{article.createdAt | date('h:i:s')}} / {{article.categorie.titre}} </div>
+        </br>
+        <div class = "content">
+        <img src= " {{article.image}} " alt="" width="300">
+        </div>    
+        </br>
+        <div class="content">
+        {{article.content}}
+        </div>
+        </br>  
+    </article>
 
-    
-    </br>
-    <h2> ecrivez un commentaire </h2>
-
-    {{ form_start(formCommentaire) }}
+    <form>
+        {{ form_start(formCommentaire) }}
+            
             {{ form_widget(formCommentaire) }}
-                <button type"submit" class="btn btn-success"> J'enregistre </button>
+
+        <button type"submit" class="btn btn-success"> J'enregistre </button>
+
         {{ form_end(formCommentaire) }}
+    </form>
     </br>
-
-
 
     <section id="commentaires">
         <div class='container'>
