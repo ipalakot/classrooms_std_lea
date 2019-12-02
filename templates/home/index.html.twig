@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Acces Locaiton{% endblock %}
+{% block title %}{{ parent() }} Acces Locaiton{% endblock %}
 
 {% block body %}
 <style>
@@ -19,19 +19,20 @@
                 <div class="col-md-4">
 
                     <article>
-                        <h2>{{article.title}}</h2>
-                        <div class = "metadata"> {{article.createdAt | date('d/m/Y')}} a {{article.createdAt | date('h:i:s')}} / {{article.categorie.titre}} </div>
-                        </br>
-                        <div class = "content">
-                        <img src= " {{article.image}} " alt="" width="300">
-                        </div>    
-                        </br>
-                        <div class="content">
-                        {{article.content}}
-                        </div>
-                        </br>  
-                        <a href="{{path('blog_show', {'id' : article.id})}}" class="btn btn-primary"> Lire la suite </a>                                          
-                        <hr>
+                        <figure>
+                            <h2> {{article.title}}</h2>
+                            <div class = "metadata"> {{article.createdAt | date('d/m/Y')}} a {{article.createdAt | date('h:i:s')}} / {{article.categorie.titre}} </div>
+                            </br>
+                            <div class = "content">
+                            <img src= " {{article.image}} " alt="" title="une image" width="300">
+                            <figcaption><em> une image </em></figcaption>
+                            </div>    
+                            </br>
+                            <div class="content">
+                            {{article.content}}
+                            </div>
+                            </br>
+                        <figure>    
                     </article>
                 
                 </div>

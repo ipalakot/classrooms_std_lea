@@ -44,17 +44,17 @@ class BlogController extends AbstractController
     public function blog_show($id, ObjectManager $manager,  Request $request)
     {
         $repo = $this->getDoctrine()->getRepository(Article::class);
-        $repo1 = $this->getDoctrine()->getRepository(Article::class);
+        $repo1 = $this->getDoctrine()->getRepository(Commentaire::class);
         $article = $repo->find($id);
-        $articles = $repo1->findAll();
+        $commentaires = $repo1->findAll();
 
         $commentaire = new Commentaire();
         
         $form = $this->createFormBuilder($commentaire)
-            ->add('auteur')
-            ->add('commentaire')
-            ->add('createdAt', DateType::class)
-            ->getForm();
+                ->add('auteur')
+                ->add('commentaire')
+                ->add('createdAt', DateType::class)
+                ->getForm();
 
             $form->handleRequest($request);
         
@@ -63,16 +63,16 @@ class BlogController extends AbstractController
             $commentaire->setCreatedAt(new \DateTime());
             $manager->persist($commentaire); 
             $manager->flush();
+
             return $this->redirectToRoute('blog_show', ['id'=>$article->getId()]);
         }
 
         return $this->render('blog/blog_show.html.twig', [
             'controller_name' => 'BlogController',
             'article'=> $article,
-            'articles'=> $articles,
+            'commentaires'=> $commentaires,
             'commentaire'=>$commentaire,
             'formCommentaire' => $form->createView(),
-
         ]);
     }
 

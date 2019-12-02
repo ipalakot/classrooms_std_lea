@@ -20,7 +20,7 @@ class HomeController extends Controller
         $articles =  $paginator->paginate(
             $repo->findAll(), 
             $request->query->getInt('page', 1), /*page number*/
-            15 /*limit per page*/
+            6 /*limit per page*/
         );
 
         return $this->render('home/index.html.twig', [
@@ -70,10 +70,5 @@ class HomeController extends Controller
         ]);
     } 
 
-
-    public function rechecher()
-    {
-        
-    }
 }
 

@@ -47,4 +47,13 @@ class RechercheRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /*public function findAll($article);
+    {
+        return $this->createQueryBuilder()
+        ->where(title)
+        ->setParameter()
+        ->getQuery()
+        ->getResult()
+    }*/
 }

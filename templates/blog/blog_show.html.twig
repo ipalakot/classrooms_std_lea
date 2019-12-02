@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Biens!{% endblock %}
+{% block title %}{{ parent() }} Bien!{% endblock %}
+
 
 {% block body %}
 
@@ -46,7 +47,8 @@
             </div>
         </div>
         </br>
-        
+                
+                
         {% for commentaire in article.commentaires %}
             <div class='container'>
                 <div class='content'>
