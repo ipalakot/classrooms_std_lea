@@ -3,9 +3,25 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}ShopStore02{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link href="_css/style.css?<?=time()?>" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        {% block stylesheets %} 
+        <link rel="stylesheet"  href="{{ asset('css/main.css') }}"> 
+        <link rel="stylesheet"  href="{{ asset('css/bootstrap.min.css') }}"> 
+        <link rel="stylesheet"  href="{{ asset('css/bootstrap-theme.css') }}"> 
+        <link rel="stylesheet"  href="{{ asset('css/font-awesome.min.css') }}"> 
+        {% endblock %}
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-primary">
@@ -22,10 +38,11 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="{{path('blog')}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Liste des Articles</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="#">Politique</a>
+                <a class="dropdown-item" href="#">Religion</a>
+                <a class="dropdown-item" href="#">Sport</a>
+                <a class="dropdown-item" href="#">Formation</a>
+                <a class="dropdown-item" href="#">Fait divers</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -48,13 +65,11 @@
     </body>
     <!-- Footer -->
     <footer class="text-white-50 bg-primary">
-
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2018 Copyright:
         <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
     </div>
     <!-- Copyright -->
-
     </footer>
     <!-- Footer -->  
 </html>
