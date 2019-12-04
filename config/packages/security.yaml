@@ -8,10 +8,10 @@ security:
                         password: 0904Indo1109
                         roles: ROLE_ADMIN
     firewalls:
-        dev:
+        dev: 
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-       
+
         main:
             anonymous: true
 
@@ -30,4 +30,3 @@ security:
 
     encoders:
             Symfony\Component\Security\Core\User\User: plaintext
-
