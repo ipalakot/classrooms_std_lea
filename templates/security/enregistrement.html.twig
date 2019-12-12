@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}/inscription{% endblock %}
+
+{% form_theme formUser 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    
+        <div class="jumbotron" >
+            <h1 style ="text-align:center">Enregistrement</h1>
+        </div>
+    
+       <div>
+            {{ form_start(formUser) }}
+
+            {{ form_row(formUser.email, {'label': 'E-Mail :','attr': {'placeholder': "Mail de l'utilisateur"}}) }}
+            {{ form_row(formUser.password, {'label': 'Mot de passe : ','attr': {'placeholder': "Mot de passe de l'utilisateur"}}) }}
+           
+            <button type="submit" class="btn btn-success">Enregistrez !!!!</button>
+
+            {{ form_end(formUser) }}
+        </div>
+{% endblock %}
